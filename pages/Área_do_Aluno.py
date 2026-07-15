@@ -47,7 +47,7 @@ if "logado" not in st.session_state or not st.session_state["logado"]:
     st.warning("Acesso restrito. Por favor, faça login na página de Login para acessar esta área.")
     st.stop() 
 
-st.write(f"Olá, **{st.session_state.get('usuario_nome', 'Membro G4')}**! Preencha as informações coletadas na UBS abaixo:")
+st.write(f"Olá, **{st.session_state.get('usuario_nome', 'Membro PET-Saúde')}**! Preencha as informações coletadas na UBS abaixo:")
 
 with st.form("formulario_ubs", clear_on_submit=True):
     ubs_selecionada = st.selectbox(
