@@ -33,20 +33,31 @@ st.markdown("""
     /* Importa a fonte para combinar com a logo */
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
-    /* Força o Streamlit a usar a nova fonte */
-    html, body, [class*="css"], [class*="st-"] {
-        font-family: 'Montserrat', sans-serif !important;
+    /* 1. Aplica a nova fonte de forma suave, sem forçar em cima dos ícones */
+    .stApp {
+        font-family: 'Montserrat', sans-serif;
     }
 
+    /* 2. PROTEGE os ícones nativos do Streamlit para eles voltarem a aparecer */
+    span.material-symbols-rounded, 
+    span.material-icons, 
+    .stIcon {
+        font-family: 'Material Symbols Rounded' !important;
+    }
+
+    /* ========================================= */
+    /* O RESTO DO SEU CSS CONTINUA NORMAL ABAIXO */
+    /* ========================================= */
+    
     .main-title {
         font-size: 2.5rem;
         font-weight: 700;
-        color: #002B49; /* Ajustado para o azul escuro da logo */
+        color: #002B49;
         margin-bottom: 0.5rem;
     }
     .subtitle {
         font-size: 1.1rem;
-        color: #00B259; /* Ajustado para o verde da logo */
+        color: #00B259;
         margin-bottom: 2rem;
         font-weight: 600;
     }
@@ -73,6 +84,7 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
+
 
 
 # ==========================================================
