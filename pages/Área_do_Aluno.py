@@ -52,7 +52,7 @@ st.write(f"Olá, **{st.session_state.get('usuario_nome', 'Membro PET-Saúde')}**
 with st.form("formulario_ubs", clear_on_submit=True):
     ubs_selecionada = st.selectbox(
         "Selecione a UBS avaliada:",
-        ["ESF I - Nova Bariri", "ESF II", "ESF III", "UBS Central"]
+        ["ESF I - Nova Bariri", "ESF II", "ESF III","ESF IV","ESF V", "UBS Central"]
     )
     
     col1, col2 = st.columns(2)
