@@ -59,95 +59,173 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# 1. ESTRUTURA DE DADOS REALISTA (Colunas exatas do formulário)
+# 1. ESTRUTURA DE DADOS REALISTA (6 Simulações baseadas nas UBSs/ESFs de Bariri)
 @st.cache_data
 def carregar_dados_simulados():
     dados = [
         {
             "ID da resposta": 1,
-            "Hora de início": "2026-07-14 09:00:00",
-            "Hora de conclusão": "2026-07-14 09:15:00",
-            "Nome completo:": "Dr. Roberto Carlos de Almeida",
-            "Em qual Unidade Básica de Saúde (UBS) você trabalha atualmente?": "UBS Dr. Alceu de Carvalho - Centro",
-            "Qual o seu cargo atual na UBS?": "Médico de Família",
-            "Quais ferramentas e registros são utilizados ao longo do fluxo de atendimento do paciente?": "Prontuário Eletrônico (e-SUS APS), Ficha de Atendimento Individual em papel, Bloco de Receitas físico e planilha de controle interna.",
-            "Existe um protocolo formal e claro que define qual profissional é responsável por alimentar o sistema em cada etapa?": "Não, muitas vezes a recepção abre o atendimento, mas o preenchimento clínico e desfecho ficam confusos entre enfermeiro e médico.",
-            "Na sua percepção, a localização geográfica da unidade cria barreiras de acesso para a população local?": "Não, por ser no Centro, o acesso é relativamente fácil para a maior parte da população, embora falte transporte adaptado.",
-            "Qual é o perfil de faixa etária predominante dos usuários que geram a maior demanda na unidade?": "Idosos (mais de 60 anos) com condições crônicas como diabetes e hipertensão.",
-            "Na sua percepção, qual é o perfil socioeconômica predominante (classe social) dos usuários que mais frequentam esta Unidade de Saúde?": "Classe D e E, famílias de baixa renda e aposentados dependentes exclusivamente do SUS.",
-            "Com que frequência os prontuários dos usuários são atualizados no e-SUS APS?": "Diariamente, mas com atrasos significativos ao final do expediente devido à lentidão do sistema.",
-            "Há necessidade de duplicar a informação, registrando o mesmo atendimento in mais de um local (ex: papel e sistema)?": "Sim, registramos no prontuário eletrônico e também em uma ficha física de papel por segurança, pois o sistema municipal frequentemente cai.",
-            "Com que frequência você precisa registrar a mesma informação de um único atendimento em mais de um local?": "Sempre (em todos os atendimentos)",
-            "Quando ocorre a duplicidade de registro, em quais locais a informação precisa ser replicada? (Marque todas as opções que se aplicam na sua rotina)": "Ficha de Atendimento em papel, Prontuário do e-SUS APS, Livro de Registro de Receituário de Controle Especial.",
-            "O preenchimento das informações clínicas nos sistemas segue um padrão rígido estabelecido pela gestão?": "Não, cada profissional preenche de uma forma. Não há uma padronização clara ou treinamento recente.",
-            "Quando surgem dúvidas operacionais no sistema, a equipe possui materiais de apoio acessíveis?": "Não, dependemos de ligar para o suporte da prefeitura ou perguntar para colegas que conhecem um pouco mais.",
-            "Qual é o política de login aplicada para o acesso aos computadores e sistemas?": "Login genérico compartilhado por computador na sala de atendimento.",
-            "Há uso de dispositivos eletrônicos pessoais (celulares/tablets) para fins de trabalho na unidade?": "Sim, usamos nossos celulares pessoais no WhatsApp para discutir casos clínicos e agilizar encaminhamentos, pois não há sistema de chat interno.",
-            "Em uma escala de 1 a 5, quanto você considera que o prontuário eletrônico melhora a qualidade do cuidado ao paciente?": 3,
-            "Quais são os principais benefícios práticos percebidos com o uso dos sistemas digitais?": "Rapidez para localizar históricos de consultas anteriores e facilidade de leitura das receitas digitadas em comparação com letras manuscritas.",
-            "Em média, quantos minutos você gasta preenchendo o sistema após a consulta de um paciente?": "10 minutos",
-            "Com que frequência a lentidão ou travamento do sistema atrasa o fluxo de atendimento da sua agenda?": "Frequentemente (quase todos os dias, principalmente no período da tarde)"
+            "Hora de início": "2026-07-14 08:00:00",
+            "Hora de conclusão": "2026-07-14 08:05:00",
+            "Nome completo:": "Mariana de Souza Oliveira",
+            "Em qual Unidade Básica de Saúde (UBS) você trabalha atualmente?": "UBS Central (José Francisco Belluzzo)",
+            "Qual o seu cargo atual na UBS?": "Enfermeiro",
+            "Quais ferramentas e registros são utilizados ao longo do fluxo de atendimento do paciente?": "Prontuário Eletrônico/e-SUS APS e Prontuário Físico (Papel)",
+            "Existe um protocolo formal e claro que define qual profissional é responsável por alimentar o sistema em cada etapa?": "Existe um protocolo, mas o registro acaba sendo compartilhado/flexível na rotina.",
+            "Na sua percepção, a localização geográfica da unidade cria barreiras de acesso para a população local?": "Não, a localização é central ou de fácil acesso para todos.",
+            "Qual é o perfil de faixa etária predominante dos usuários que geram a maior demanda na unidade?": "Predominantemente Idosos (Terceira Idade)",
+            "Na sua percepção, qual é o perfil socioeconômica predominante (classe social) dos usuários que mais frequentam esta Unidade de Saúde?": "Perfil Misto: A unidade atende a todas as classes sociais de forma equilibrada.",
+            "Com que frequência os prontuários dos usuários são atualizados no e-SUS APS?": "Imediatamente após a finalização de cada atendimento.",
+            "Há necessidade de duplicar a informação, registrando o mesmo atendimento in mais de um local (ex: papel e sistema)?": "Às vezes, apenas em situações específicas ou quando o sistema cai.",
+            "Com que frequência você precisa registrar a mesma informação de um único atendimento em mais de um local?": "Às vezes: Apenas quando o sistema principal cai.",
+            "Quando ocorre a duplicidade de registro, em quais locais a informação precisa ser replicada? (Marque todas as opções que se aplicam na sua rotina)": "Sistema oficial (e-SUS APS) + Prontuário de papel (Ficha física do paciente).",
+            "O preenchimento das informações clínicas nos sistemas segue um padrão rígido estabelecido pela gestão?": "Há uma padronização básica, mas com muita variação pessoal.",
+            "Quando surgem dúvidas operacionais no sistema, a equipe possui materiais de apoio acessíveis?": "Existem manuais, mas são confusos ou de difícil localização.",
+            "Qual é o política de login aplicada para o acesso aos computadores e sistemas?": "Login 100% individual (usuário e senha exclusivos por servidor).",
+            "Há uso de dispositivos eletrônicos pessoais (celulares/tablets) para fins de trabalho na unidade?": "Não, utilizamos estritamente os equipamentos fornecidos pela unidade.",
+            "Em uma escala de 1 a 5, quanto você considera que o prontuário eletrônico melhora a qualidade do cuidado ao paciente?": 4,
+            "Quais são os principais benefícios práticos percebidos com o uso dos sistemas digitais?": "Rapidez no acesso ao histórico do paciente; Maior segurança.",
+            "Em média, quantos minutos você gasta preenchendo o sistema após a consulta de um paciente?": "4 minutos",
+            "Com que frequência a lentidão ou travamento do sistema atrasa o fluxo de atendimento da sua agenda?": "Várias vezes na semana."
         },
         {
             "ID da resposta": 2,
-            "Hora de início": "2026-07-14 09:30:00",
-            "Hora de conclusão": "2026-07-14 09:50:00",
-            "Nome completo:": "Mariana Souza Santos",
-            "Em qual Unidade Básica de Saúde (UBS) você trabalha atualmente?": "UBS Soma - Jardim Nova Bariri",
-            "Qual o seu cargo atual na UBS?": "Enfermeira Chefe",
-            "Quais ferramentas e registros são utilizados ao longo do fluxo de atendimento do paciente?": "Prontuário Eletrônico e-SUS APS, WhatsApp pessoal para coordenação, folhas soltas de triagem manual.",
-            "Existe um protocolo formal e claro que define qual profissional é responsável por alimentar o sistema em cada etapa?": "Existe no papel, mas no dia a dia a sobrecarga faz com que qualquer um insira os dados para liberar a fila.",
-            "Na sua percepção, a localização geográfica da unidade cria barreiras de acesso para a população local?": "Sim, a unidade fica distante de pontos de ônibus e a caminhada para idosos e gestantes sob o sol é muito desgastante.",
-            "Qual é o perfil de faixa etária predominante dos usuários que geram a maior demanda na unidade?": "Adultos de 20 a 59 anos, e crianças na sala de vacina.",
-            "Na sua percepção, qual é o perfil socioeconômica predominante (classe social) dos usuários que mais frequentam esta Unidade de Saúde?": "Classe E e pessoas em situação de extrema vulnerabilidade social.",
-            "Com que frequência os prontuários dos usuários são atualizados no e-SUS APS?": "Semanalmente ou acumulado, pois faltam computadores suficientes na triagem.",
-            "Há necessidade de duplicar a informação, registrando o mesmo atendimento in mais de um local (ex: papel e sistema)?": "Sim, anotamos os dados vitais em um caderno de triagem e depois digitamos no e-SUS para não travar a fila de espera física.",
-            "Com que frequência você precisa registrar a mesma informação de um único atendimento em mais de um local?": "Frequentemente (várias vezes ao dia)",
-            "Quando ocorre a duplicidade de registro, em quais locais a informação precisa ser replicada? (Marque todas as opções que se aplicam na sua rotina)": "Caderno de Triagem físico, Sistema e-SUS APS, Planilhas de Campanhas de Vacinação do Estado.",
-            "O preenchimento das informações clínicas nos sistemas segue um padrão rígido estabelecido pela gestão?": "Sim, mas é um padrão focado apenas em bater metas de produção (faturamento do Previne Brasil), não na qualidade clínica.",
-            "Quando surgem dúvidas operacionais no sistema, a equipe possui materiais de apoio acessíveis?": "Temos um PDF desatualizado enviado pelo e-mail da prefeitura há dois anos.",
-            "Qual é o política de login aplicada para o acesso aos computadores e sistemas?": "Login individual com senha pessoal, porém o sistema cai e desloga sozinho a cada 20 minutos.",
-            "Há uso de dispositivos eletrônicos pessoais (celulares/tablets) para fins de trabalho na unidade?": "Sim, criamos um grupo de WhatsApp da unidade com nossos números pessoais para avisar sobre vacinas em falta e organizar visitas domiciliares com as ACS.",
-            "Em uma escala de 1 a 5, quanto você considera que o prontuário eletrônico melhora a qualidade do cuidado ao paciente?": 4,
-            "Quais são os principais benefícios práticos percebidos com o uso dos sistemas digitais?": "Envio direto dos dados de produção para o Ministério da Saúde e facilidade de verificar o esquema de vacinação do paciente.",
-            "Em média, quantos minutos você gasta preenchendo o sistema após a consulta de um paciente?": "15 minutos",
-            "Com que frequência a lentidão ou travamento do sistema atrasa o fluxo de atendimento da sua agenda?": "Sempre (todos os dias a conexão de internet da unidade oscila e gera longas filas)"
+            "Hora de início": "2026-07-14 09:10:00",
+            "Hora de conclusão": "2026-07-14 09:15:00",
+            "Nome completo:": "Dr. Carlos Eduardo Medeiros",
+            "Em qual Unidade Básica de Saúde (UBS) você trabalha atualmente?": "ESF I - Nova Bariri",
+            "Qual o seu cargo atual na UBS?": "Médico",
+            "Quais ferramentas e registros são utilizados ao longo do fluxo de atendimento do paciente?": "Prontuário Eletrônico/e-SUS APS",
+            "Existe um protocolo formal e claro que define qual profissional é responsável por alimentar o sistema em cada etapa?": "Sim, existe um protocolo rígido e todos seguem.",
+            "Na sua percepção, a localização geográfica da unidade cria barreiras de acesso para a população local?": "Não, a localização é central ou de fácil acesso para todos.",
+            "Qual é o perfil de faixa etária predominante dos usuários que geram a maior demanda na unidade?": "Distribuição mista (bem equilibrada entre todas as idades)",
+            "Na sua percepção, qual é o perfil socioeconômica predominante (classe social) dos usuários que mais frequentam esta Unidade de Saúde?": "Classe Média-Baixa: Trabalhadores assalariados, autônomos e famílias com orçamento mais apertado.",
+            "Com que frequência os prontuários dos usuários são atualizados no e-SUS APS?": "Imediatamente após a finalização de cada atendimento.",
+            "Há necessidade de duplicar a informação, registrando o mesmo atendimento in mais de um local (ex: papel e sistema)?": "Não, o registro é feito exclusivamente em uma única plataforma oficial.",
+            "Com que frequência você precisa registrar a mesma informação de um único atendimento em mais de um local?": "Nunca: O registro é feito exclusivamente uma única vez no sistema oficial.",
+            "Quando ocorre a duplicidade de registro, em quais locais a informação precisa ser replicada? (Marque todas as opções que se aplicam na sua rotina)": "Não se aplica (Não realizo registros duplicados).",
+            "O preenchimento das informações clínicas nos sistemas segue um padrão rígido estabelecido pela gestão?": "Sim, os registros são estritamente padronizados.",
+            "Quando surgem dúvidas operacionais no sistema, a equipe possui materiais de apoio acessíveis?": "Sim, existem guias/manuais claros e de fácil acesso.",
+            "Qual é o política de login aplicada para o acesso aos computadores e sistemas?": "Login 100% individual (usuário e senha exclusivos por servidor).",
+            "Há uso de dispositivos eletrônicos pessoais (celulares/tablets) para fins de trabalho na unidade?": "Sim, por conveniência, embora a unidade disponibilize aparelhos.",
+            "Em uma escala de 1 a 5, quanto você considera que o prontuário eletrônico melhora a qualidade do cuidado ao paciente?": 5,
+            "Quais são os principais benefícios práticos percebidos com o uso dos sistemas digitais?": "Agilidade na tomada de decisão clínica; Melhor coordenação entre equipes de saúde.",
+            "Em média, quantos minutos você gasta preenchendo o sistema após a consulta de um paciente?": "3 minutos",
+            "Com que frequência a lentidão ou travamento do sistema atrasa o fluxo de atendimento da sua agenda?": "Raramente"
         },
         {
             "ID da resposta": 3,
-            "Hora de início": "2026-07-14 10:15:00",
-            "Hora de conclusão": "2026-07-14 10:32:00",
-            "Nome completo:": "Carlos Eduardo Siqueira",
-            "Em qual Unidade Básica de Saúde (UBS) você trabalha atualmente?": "UBS Dr. Domingos de Léo - Vila Maria",
-            "Qual o seu cargo atual na UBS?": "Agente Comunitário de Saúde (ACS)",
-            "Quais ferramentas e registros são utilizados ao longo do fluxo de atendimento do paciente?": "Fichas CDS em papel (Cadastro Domiciliar e Ficha de Visita) e digitação posterior no e-SUS por digitação centralizada.",
-            "Existe um protocolo formal e claro que define qual profissional é responsável por alimentar o sistema em cada etapa?": "Sim, os ACSs preenchem no papel e entregam para o digitador da UBS inserir no sistema.",
-            "Na sua percepção, a localização geográfica da unidade cria barreiras de acesso para a população local?": "Sim, a Vila Maria é cortada por uma rodovia estadual de grande movimento e os moradores enfrentam dificuldades para atravessar com segurança até a UBS.",
-            "Qual é o perfil de faixa etária predominante dos usuários que geram a maior demanda na unidade?": "Idosos e gestantes.",
-            "Na sua percepção, qual é o perfil socioeconômica predominante (classe social) dos usuários que mais frequentam esta Unidade de Saúde?": "Classe D e E, beneficiários do Bolsa Família.",
-            "Com que frequência os prontuários dos usuários são atualizados no e-SUS APS?": "Quinzenalmente (devido ao acúmulo de fichas em papel que aguardam digitação).",
-            "Há necessidade de duplicar a informação, registrando o mesmo atendimento in mais de um local (ex: papel e sistema)?": "Sim, porque as visitas domiciliares são todas feitas em fichas de papel do Ministério e depois passadas a limpo no computador.",
-            "Com que frequência você precisa registrar a mesma informação de um único atendimento em mais de um local?": "Sempre (em todas as visitas)",
-            "Quando ocorre a duplicidade de registro, em quais locais a informação precisa ser replicada? (Marque todas as opções que se aplicam na sua rotina)": "Ficha de Visita Domiciliar em papel, Relatório diário de visitas do ACS e posterior digitação no e-SUS CDS.",
-            "O preenchimento das informações clínicas nos sistemas segue um padrão rígido estabelecido pela gestão?": "Sim, as fichas são rígidas, mas muito burocráticas e difíceis de preencher.",
-            "Quando surgem dúvidas operacionais no sistema, a equipe possui materiais de apoio acessíveis?": "Não, nós nos ajudamos entre nós ACSs, mas a prefeitura não dá treinamento de informática.",
-            "Qual é o política de login aplicada para o acesso aos computadores e sistemas?": "Apenas o digitador oficial possui acesso ao sistema e-SUS na unidade.",
-            "Há uso de dispositivos eletrônicos pessoais (celulares/tablets) para fins de trabalho na unidade?": "Sim, os ACSs usam seus próprios smartphones para tirar fotos de receitas, carteiras de vacinação ou ferimentos para mostrar ao médico/enfermeiro na unidade.",
-            "Em uma escala de 1 a 5, quanto você considera que o prontuário eletrônico melhora a qualidade do cuidado ao paciente?": 2,
-            "Quais são os principais benefícios práticos percebidos com o uso dos sistemas digitais?": "Centralização dos cadastros familiares e controle de quem recebeu visita no mês.",
+            "Hora de início": "2026-07-14 10:20:00",
+            "Hora de conclusão": "2026-07-14 10:30:00",
+            "Nome completo:": "Sandra Regina Alencar",
+            "Em qual Unidade Básica de Saúde (UBS) você trabalha atualmente?": "ESF II - Paulo de Tarso Mazzo",
+            "Qual o seu cargo atual na UBS?": "Auxiliar administrativo",
+            "Quais ferramentas e registros são utilizados ao longo do fluxo de atendimento do paciente?": "Prontuário Eletrônico/e-SUS APS e Caderno de Anotações Interno/Pré-consulta.",
+            "Existe um protocolo formal e claro que define qual profissional é responsável por alimentar o sistema em cada etapa?": "Não existe protocolo formal; a responsabilidade é distribuída informalmente.",
+            "Na sua percepção, a localização geográfica da unidade cria barreiras de acesso para a população local?": "Parcialmente, impacta apenas grupos específicos (ex: moradores distantes).",
+            "Qual é o perfil de faixa etária predominante dos usuários que geram a maior demanda na unidade?": "Predominantemente Idosos (Terceira Idade)",
+            "Na sua percepção, qual é o perfil socioeconômica predominante (classe social) dos usuários que mais frequentam esta Unidade de Saúde?": "Classe Baixa / Vulnerabilidade Social.",
+            "Com que frequência os prontuários dos usuários são atualizados no e-SUS APS?": "Em blocos, ao final do turno ou do expediente do dia.",
+            "Há necessidade de duplicar a informação, registrando o mesmo atendimento in mais de um local (ex: papel e sistema)?": "Sim, frequentemente realizamos o registro duplo (retrabalho habitual).",
+            "Com que frequência você precisa registrar a mesma informação de um único atendimento em mais de um local?": "Sempre: Faz parte da rotina diária registrar o mesmo dado em dois ou mais lugares.",
+            "Quando ocorre a duplicidade de registro, em quais locais a informação precisa ser replicada? (Marque todas as opções que se aplicam na sua rotina)": "Sistema oficial (e-SUS APS) + Caderno de anotações físico da unidade (Ata/Livro preto).",
+            "O preenchimento das informações clínicas nos sistemas segue um padrão rígido estabelecido pela gestão?": "Não há padronização; cada profissional registra a seu critério.",
+            "Quando surgem dúvidas operacionais no sistema, a equipe possui materiais de apoio acessíveis?": "Não há materiais; dependemos do suporte técnico de terceiros ou colegas.",
+            "Qual é o política de login aplicada para o acesso aos computadores e sistemas?": "Login compartilhado por setor (ex: recepção usa a mesma credencial).",
+            "Há uso de dispositivos eletrônicos pessoais (celulares/tablets) para fins de trabalho na unidade?": "Sim, usamos equipamentos próprios devido à falta ou falha dos corporativos.",
+            "Em uma escala de 1 a 5, quanto você considera que o prontuário eletrônico melhora a qualidade do cuidado ao paciente?": 3,
+            "Quais são os principais benefícios práticos percebidos com o uso dos sistemas digitais?": "Rapidez no acesso ao histórico do paciente.",
             "Em média, quantos minutos você gasta preenchendo o sistema após a consulta de um paciente?": "8 minutos",
-            "Com que frequência a lentidão ou travamento do sistema atrasa o fluxo de atendimento da sua agenda?": "Frequentemente (travamento do computador único de digitação impede o encerramento do lote de dados)"
+            "Com que frequência a lentidão ou travamento do sistema atrasa o fluxo de atendimento da sua agenda?": "Diariamente"
+        },
+        {
+            "ID da resposta": 4,
+            "Hora de início": "2026-07-14 11:00:00",
+            "Hora de conclusão": "2026-07-14 11:06:00",
+            "Nome completo:": "Thiago Alves Pedrosa",
+            "Em qual Unidade Básica de Saúde (UBS) você trabalha atualmente?": "ESF III - Dr. Renato Figueiredo",
+            "Qual o seu cargo atual na UBS?": "Técnico de enfermagem",
+            "Quais ferramentas e registros são utilizados ao longo do fluxo de atendimento do paciente?": "Prontuário Eletrônico/e-SUS APS",
+            "Existe um protocolo formal e claro que define qual profissional é responsável por alimentar o sistema em cada etapa?": "Existe um protocolo, mas o registro acaba sendo compartilhado/flexível na rotina.",
+            "Na sua percepção, a localização geográfica da unidade cria barreiras de acesso para a população local?": "Parcialmente, impacta apenas grupos específicos (ex: moradores distantes).",
+            "Qual é o perfil de faixa etária predominante dos usuários que geram a maior demanda na unidade?": "Distribuição mista (bem equilibrada entre todas as idades)",
+            "Na sua percepção, qual é o perfil socioeconômica predominante (classe social) dos usuários que mais frequentam esta Unidade de Saúde?": "Classe Média-Baixa: Trabalhadores assalariados, autônomos e famílias com orçamento mais apertado.",
+            "Com que frequência os prontuários dos usuários são atualizados no e-SUS APS?": "Imediatamente após a finalização de cada atendimento.",
+            "Há necessidade de duplicar a informação, registrando o mesmo atendimento in mais de um local (ex: papel e sistema)?": "Às vezes, apenas em situações específicas ou quando o sistema cai.",
+            "Com que frequência você precisa registrar a mesma informação de um único atendimento em mais de um local?": "Raramente: Ocorre apenas em casos muito específicos ou exceções isoladas.",
+            "Quando ocorre a duplicidade de registro, em quais locais a informação precisa ser replicada? (Marque todas as opções que se aplicam na sua rotina)": "Sistema oficial (e-SUS APS) + Planilhas internas / Formulários paralelos da prefeitura.",
+            "O preenchimento das informações clínicas nos sistemas segue um padrão rígido estabelecido pela gestão?": "Há uma padronização básica, mas com muita variação pessoal.",
+            "Quando surgem dúvidas operacionais no sistema, a equipe possui materiais de apoio acessíveis?": "Sim, existem guias/manuais claros e de fácil acesso.",
+            "Qual é o política de login aplicada para o acesso aos computadores e sistemas?": "Login 100% individual (usuário e senha exclusivos por servidor).",
+            "Há uso de dispositivos eletrônicos pessoais (celulares/tablets) para fins de trabalho na unidade?": "Não, utilizamos estritamente os equipamentos fornecidos pela unidade.",
+            "Em uma escala de 1 a 5, quanto você considera que o prontuário eletrônico melhora a qualidade do cuidado ao paciente?": 4,
+            "Quais são os principais benefícios práticos percebidos com o uso dos sistemas digitais?": "Maior segurança e confiabilidade da informação; Agilidade na tomada de decisão.",
+            "Em média, quantos minutos você gasta preenchendo o sistema após a consulta de um paciente?": "4 minutos",
+            "Com que frequência a lentidão ou travamento do sistema atrasa o fluxo de atendimento da sua agenda?": "Várias vezes na semana."
+        },
+        {
+            "ID da resposta": 5,
+            "Hora de início": "2026-07-14 13:15:00",
+            "Hora de conclusão": "2026-07-14 13:22:00",
+            "Nome completo:": "Dra. Beatriz Helena Castro",
+            "Em qual Unidade Básica de Saúde (UBS) você trabalha atualmente?": "ESF IV - Dr. Francisco Leoni Neto",
+            "Qual o seu cargo atual na UBS?": "Dentista",
+            "Quais ferramentas e registros são utilizados ao longo do fluxo de atendimento do paciente?": "Prontuário Eletrônico/e-SUS APS",
+            "Existe um protocolo formal e claro que define qual profissional é responsável por alimentar o sistema em cada etapa?": "Sim, existe um protocolo rígido e todos seguem.",
+            "Na sua percepção, a localização geográfica da unidade cria barreiras de acesso para a população local?": "Não, a localização é central ou de fácil acesso para todos.",
+            "Qual é o perfil de faixa etária predominante dos usuários que geram a maior demanda na unidade?": "Predominantemente Jovens e Adultos",
+            "Na sua percepção, qual é o perfil socioeconômica predominante (classe social) dos usuários que mais frequentam esta Unidade de Saúde?": "Classe Média-Baixa: Trabalhadores assalariados, autônomos e famílias com orçamento mais apertado.",
+            "Com que frequência os prontuários dos usuários são atualizados no e-SUS APS?": "Em blocos, ao final do turno ou do expediente do dia.",
+            "Há necessidade de duplicar a informação, registrando o mesmo atendimento in mais de um local (ex: papel e sistema)?": "Não, o registro é feito exclusivamente em uma única plataforma oficial.",
+            "Com que frequência você precisa registrar a mesma informação de um único atendimento em mais de um local?": "Nunca: O registro é feito exclusivamente uma única vez no sistema oficial.",
+            "Quando ocorre a duplicidade de registro, em quais locais a informação precisa ser replicada? (Marque todas as opções que se aplicam na sua rotina)": "Não se aplica (Não realizo registros duplicados).",
+            "O preenchimento das informações clínicas nos sistemas segue um padrão rígido estabelecido pela gestão?": "Sim, os registros são estritamente padronizados.",
+            "Quando surgem dúvidas operacionais no sistema, a equipe possui materiais de apoio acessíveis?": "Existem manuais, mas são confusos ou de difícil localização.",
+            "Qual é o política de login aplicada para o acesso aos computadores e sistemas?": "Login 100% individual (usuário e senha exclusivos por servidor).",
+            "Há uso de dispositivos eletrônicos pessoais (celulares/tablets) para fins de trabalho na unidade?": "Não, utilizamos estritamente os equipamentos fornecidos pela unidade.",
+            "Em uma escala de 1 a 5, quanto você considera que o prontuário eletrônico melhora a qualidade do cuidado ao paciente?": 4,
+            "Quais são os principais benefícios práticos percebidos com o uso dos sistemas digitais?": "Rapidez no acesso ao histórico do paciente; Melhor coordenação.",
+            "Em média, quantos minutos você gasta preenchendo o sistema após a consulta de um paciente?": "7 minutos",
+            "Com que frequência a lentidão ou travamento do sistema atrasa o fluxo de atendimento da sua agenda?": "Raramente"
+        },
+        {
+            "ID da resposta": 6,
+            "Hora de início": "2026-07-14 14:00:00",
+            "Hora de conclusão": "2026-07-14 14:12:00",
+            "Nome completo:": "Marcos Antônio Silveira",
+            "Em qual Unidade Básica de Saúde (UBS) você trabalha atualmente?": "ESF V - Livramento",
+            "Qual o seu cargo atual na UBS?": "Gerente ou coordenador da UBS",
+            "Quais ferramentas e registros são utilizados ao longo do fluxo de atendimento do paciente?": "Prontuário Eletrônico/e-SUS APS e Sistema próprio da Prefeitura (SIS)",
+            "Existe um protocolo formal e claro que define qual profissional é responsável por alimentar o sistema em cada etapa?": "Existe um protocolo, mas o registro acaba sendo compartilhado/flexível na rotina.",
+            "Na sua percepção, a localização geográfica da unidade cria barreiras de acesso para a população local?": "Sim, dificulta significativamente o acesso da comunidade.",
+            "Qual é o perfil de faixa etária predominante dos usuários que geram a maior demanda na unidade?": "Distribuição mista (bem equilibrada entre todas as idades)",
+            "Na sua percepção, qual é o perfil socioeconômica predominante (classe social) dos usuários que mais frequentam esta Unidade de Saúde?": "Extrema Vulnerabilidade: População em situação de rua, extrema pobreza ou alta vulnerabilidade social.",
+            "Com que frequência os prontuários dos usuários são atualizados no e-SUS APS?": "Em blocos, ao final do turno ou do expediente do dia.",
+            "Há necessidade de duplicar a informação, registrando o mesmo atendimento in mais de um local (ex: papel e sistema)?": "Sim, frequentemente realizamos o registro duplo (retrabalho habitual).",
+            "Com que frequência você precisa registrar a mesma informação de um único atendimento em mais de um local?": "Frequentemente: Acontece na maioria dos atendimentos por exigência de fluxo ou falta de confiança no sistema.",
+            "Quando ocorre a duplicidade de registro, em quais locais a informação precisa ser replicada? (Marque todas as opções que se aplicam na sua rotina)": "Dois sistemas digitais diferentes (ex: e-SUS + Sistema próprio do município).",
+            "O preenchimento das informações clínicas nos sistemas segue um padrão rígido estabelecido pela gestão?": "Há uma padronização básica, mas com muita variação pessoal.",
+            "Quando surgem dúvidas operacionais no sistema, a equipe possui materiais de apoio acessíveis?": "Não há materiais; dependemos do suporte técnico de terceiros ou colegas.",
+            "Qual é o política de login aplicada para o acesso aos computadores e sistemas?": "Login 100% individual (usuário e senha exclusivos por servidor).",
+            "Há uso de dispositivos eletrônicos pessoais (celulares/tablets) para fins de trabalho na unidade?": "Sim, usamos equipamentos próprios devido à falta ou falha dos corporativos.",
+            "Em uma escala de 1 a 5, quanto você considera que o prontuário eletrônico melhora a qualidade do cuidado ao paciente?": 3,
+            "Quais são os principais benefícios práticos percebidos com o uso dos sistemas digitais?": "Melhor coordenação entre equipes de saúde.",
+            "Em média, quantos minutos você gasta preenchendo o sistema após a consulta de um paciente?": "10 minutos",
+            "Com que frequência a lentidão ou travamento do sistema atrasa o fluxo de atendimento da sua agenda?": "Diariamente"
         }
     ]
     return pd.DataFrame(dados)
 
 df_ubs = carregar_dados_simulados()
 
-# Coordenadas reais das UBSs de Bariri - SP
+# Coordenadas realistas/estimadas das 6 Unidades de Saúde de Bariri - SP
 coordenadas_ubs = {
-    "UBS Dr. Alceu de Carvalho - Centro": {"lat": -22.0735, "lon": -48.7460},
-    "UBS Soma - Jardim Nova Bariri": {"lat": -22.0812, "lon": -48.7335},
-    "UBS Dr. Domingos de Léo - Vila Maria": {"lat": -22.0625, "lon": -48.7490}
+    "UBS Central (José Francisco Belluzzo)": {"lat": -22.0735, "lon": -48.7460},
+    "ESF I - Nova Bariri": {"lat": -22.0812, "lon": -48.7335},
+    "ESF II - Paulo de Tarso Mazzo": {"lat": -22.0625, "lon": -48.7490},
+    "ESF III - Dr. Renato Figueiredo": {"lat": -22.0700, "lon": -48.7500},
+    "ESF IV - Dr. Francisco Leoni Neto": {"lat": -22.0650, "lon": -48.7300},
+    "ESF V - Livramento": {"lat": -22.0800, "lon": -48.7550}
 }
 
 # Cabeçalho da Página Principal
@@ -177,7 +255,7 @@ Este projeto analisa os fatores humanos, infraestrutura e conectividade que infl
 # Filtrar a linha correspondente à UBS selecionada
 linha_filtrada = df_ubs[df_ubs["Em qual Unidade Básica de Saúde (UBS) você trabalha atualmente?"] == ubs_selecionada].iloc[0]
 
-# Extração de Métricas Chave da UBS Selecionada
+# Extração de Métricas Chave da UBS Selecionada (Fix: '4 minutos' -> 4)
 tempo_gasto = int(linha_filtrada["Em média, quantos minutos você gasta preenchendo o sistema após a consulta de um paciente?"].split(" ")[0])
 duplicidade = "Sim" in str(linha_filtrada["Há necessidade de duplicar a informação, registrando o mesmo atendimento in mais de um local (ex: papel e sistema)?"])
 dispositivos_pessoais = "Sim" in str(linha_filtrada["Há uso de dispositivos eletrônicos pessoais (celulares/tablets) para fins de trabalho na unidade?"])
@@ -216,9 +294,6 @@ with col_esquerda:
     # Renderizar o mapa Folium no Streamlit
     mapa_dados = st_folium(mapa, width="100%", height=400, key="mapa_bariri")
     
-    # Atualizar seleção caso o usuário clique no mapa (se disponível no retorno do st_folium)
-    # Obs: Por robustez em ambiente de apresentação, o selectbox lateral serve de ancoragem e sincroniza o mapa
-    
     st.markdown("### Indicadores Rápidos da Unidade")
     
     # Seção de Métricas Dinâmicas com cores e alertas
@@ -237,14 +312,14 @@ with col_esquerda:
             st.markdown("""
             <div class='metric-card-alert'>
                 <p style='margin:0; font-size: 0.8rem; color: #991B1B;'><b>🔴 DUPLICIDADE</b></p>
-                <p style='margin:0; font-size: 1.1rem; font-weight: bold; color: #991B1B;'>Papel + Sistema</p>
+                <p style='margin:0; font-size: 1.1rem; font-weight: bold; color: #991B1B;'>Duplo Registro</p>
             </div>
             """, unsafe_allow_html=True)
         else:
             st.markdown("""
             <div class='metric-card'>
                 <p style='margin:0; font-size: 0.8rem; color: #065F46;'><b>🟢 REGISTRO</b></p>
-                <p style='margin:0; font-size: 1.1rem; font-weight: bold; color: #065F46;'>100% Digital</p>
+                <p style='margin:0; font-size: 1.1rem; font-weight: bold; color: #065F46;'>100% Oficial</p>
             </div>
             """, unsafe_allow_html=True)
             
@@ -253,7 +328,7 @@ with col_esquerda:
             st.markdown("""
             <div class='metric-card-alert'>
                 <p style='margin:0; font-size: 0.8rem; color: #991B1B;'><b>EQUIP. PESSOAL</b></p>
-                <p style='margin:0; font-size: 1.1rem; font-weight: bold; color: #991B1B;'>Uso de equipamento próprio</p>
+                <p style='margin:0; font-size: 1.1rem; font-weight: bold; color: #991B1B;'>Uso não corporativo</p>
             </div>
             """, unsafe_allow_html=True)
         else:
@@ -268,24 +343,38 @@ with col_esquerda:
     with st.expander("Ver Respostas Brutas Coletadas no Formulário"):
         st.write(linha_filtrada.to_dict())
 
-
 # MODO DE DEMONSTRAÇÃO (SAFETY FALLBACK LOCAL)
 def obter_analise_demonstracao_local(ubs_nome):
     analises = {
-        "UBS Dr. Alceu de Carvalho - Centro": {
-            "estresse": "ALTO. A equipe da unidade central enfrenta uma sobrecarga de trabalho devido à necessidade constante de duplicar informações em fichas de papel por medo de instabilidade de rede municipal. O uso do WhatsApp pessoal para coordenação de casos clínicos compensa a falta de um canal corporativo, introduzindo vulnerabilidades de dados.",
-            "diagnostico": "A perda de 10 minutos por paciente no preenchimento do e-SUS atrasa significativamente a agenda da tarde. Com a lentidão frequente do sistema no período vespertino, ocorre um efeito cascata de atrasos nas consultas subsequentes, reduzindo o número de vagas disponíveis e gerando fadiga mental extrema no profissional médico.",
-            "proposta": "1. **Padronização e Limpeza de Fluxo**: Eliminar a ficha de papel de atendimento individual para consultas de rotina, mantendo backup em papel apenas para situações de queda total de rede. \n2. **Infraestrutura**: Solicitação de auditoria da prefeitura sobre a banda de conexão no período vespertino. \n3. **Comunicação**: Criação de um canal oficial de comunicação interna na intranet local para evitar o WhatsApp de contas pessoais."
+        "UBS Central (José Francisco Belluzzo)": {
+            "estresse": "MODERADO. A equipe de enfermagem da UBS Central apresenta estresse digital esporádico. Embora o login seja individualizado e os equipamentos oficiais garantam segurança de dados, o retrabalho gerado por duplicidade (papel + sistema) durante quedas de rede causa desgaste.",
+            "diagnostico": "Com gasto de apenas 4 minutos pós-consulta, o impacto na agenda só é sentido quando a internet cai. A atualização imediata no e-SUS mostra bom fluxo de trabalho, mas a dependência de manuais confusos atrasa a resolução de dúvidas, gerando filas momentâneas.",
+            "proposta": "1. **Material de Apoio Rápido**: Criação de 'Guia de Bolso e-SUS' plastificado pelo PET-Saúde. \n2. **Protocolo de Queda de Rede**: Estabelecer rotina clara de contingência em papel para evitar duplicidade desnecessária em dias estáveis."
         },
-        "UBS Soma - Jardim Nova Bariri": {
-            "estresse": "CRÍTICO. A equipe trabalha no limite da exaustão digital. O acúmulo de prontuários não atualizados por escassez de hardware força a enfermeira-chefe a fazer mutirões de digitação semanais. A internet instável da unidade causa quedas constantes de conexão, desconectando o login a cada 20 minutos.",
-            "diagnostico": "Os 15 minutos adicionais gastos pós-consulta para tentar driblar a lentidão do e-SUS criam filas de espera físicas sob calor excessivo (fator agravado pela barreira geográfica e falta de transporte). A lentidão é diária, o que força a equipe a focar puramente nas metas numéricas do Previne Brasil em detrimento da escuta clínica qualificada.",
-            "proposta": "1. **Triagem Ágil Sincronizada**: Implantação de um painel visual simples off-line para ordem de chegada, diminuindo a dependência imediata do sistema durante o fluxo rápido de triagem. \n2. **Escala de Uso de Computadores**: Reorganizar os horários de digitação administrativa para evitar sobrecarga simultânea de acessos à rede de internet municipal. \n3. **Capacitação em Preprevine**: Treinamento focado em preenchimento inteligente sem redundâncias."
+        "ESF I - Nova Bariri": {
+            "estresse": "BAIXO. O médico desta ESF demonstra alto engajamento tecnológico. O estresse está mitigado pelo não uso de registro duplo (100% e-SUS). Há, contudo, risco ético pontual pelo uso de celulares por conveniência.",
+            "diagnostico": "O tempo de 3 minutos de preenchimento revela excelência operacional. A ausência de travamentos e o registro em tempo real evitam gargalos físicos na recepção, maximizando o volume de consultas disponíveis na agenda diária.",
+            "proposta": "1. **Multiplicador Digital**: Convidar o médico desta unidade para atuar como tutor/mentor das demais UBSs em eventos do PET. \n2. **Conscientização LGPD**: Palestra curta sobre segurança da informação em dispositivos próprios (mesmo por conveniência)."
         },
-        "UBS Dr. Domingos de Léo - Vila Maria": {
-            "estresse": "MODERADO A ALTO (Foco no Agente Comunitário de Saúde). O estresse aqui é gerado pela burocracia de dados. Os ACSs realizam visitas usando fichas CDS em papel e posteriormente repassam tudo a um único digitador centralizado. O uso de celulares próprios para tirar fotos de feridas ou receitas denota excelente proatividade, mas expõe dados sem governança.",
-            "diagnostico": "Gasto médio de 8 minutos no sistema, mas há um delay severo (de até 15 dias) entre a visita domiciliar e a entrada do dado no e-SUS APS. Isso impossibilita o acompanhamento em tempo real das gestantes e idosos que enfrentam as barreiras físicas da rodovia que isola o bairro.",
-            "proposta": "1. **Implantação de Tablets para os ACSs**: Priorizar a aquisição ou empréstimo de tablets para preenchimento direto no aplicativo e-SUS Território de forma off-line, sincronizando uma única vez ao dia na UBS. \n2. **Fluxo de Governança de Imagens**: Estabelecer um protocolo rígido para exclusão imediata de imagens médicas coletadas em aparelhos pessoais após a discussão do caso com o médico."
+        "ESF II - Paulo de Tarso Mazzo": {
+            "estresse": "ALTO. Foco em triagem administrativa. A política de login compartilhado fere normas de rastreabilidade. A obrigatoriedade de transcrever o 'Livro Preto' (Ata) para o e-SUS APS em blocos ao fim do dia gera extrema carga cognitiva à recepção.",
+            "diagnostico": "Os 8 minutos gastos (acima da média ideal administrativa) atrasam severamente o fluxo, criando longas filas de espera de uma população socialmente vulnerável e de idosos. A lentidão diária do sistema exige que o trabalho seja repetido, consumindo tempo precioso do paciente na unidade.",
+            "proposta": "1. **Fim do Caderno Físico**: Intervenção direta com a gestão para abolir o Livro de Ata paralelo na recepção. \n2. **Ajuste de Logins**: Solicitar TI para configurar logins rotativos rápidos na recepção em vez de login geral."
+        },
+        "ESF III - Dr. Renato Figueiredo": {
+            "estresse": "MODERADO. A equipe técnica lida com duplicidade (e-SUS + planilhas da prefeitura) e protocolos flexíveis, gerando incerteza sobre quem deve preencher o quê. Felizmente, não usam aparelhos pessoais, resguardando os dados.",
+            "diagnostico": "Com gasto de 4 minutos no sistema, a agilidade do técnico ajuda, mas o gargalo principal ocorre várias vezes na semana com travamentos. O uso de formulários paralelos esgota a equipe técnica, que deveria estar focada na assistência e vacinação.",
+            "proposta": "1. **Mapeamento de Planilhas**: O grupo PET pode auditar as planilhas paralelas da prefeitura para integrar suas variáveis ao próprio e-SUS (como marcadores ou evolução). \n2. **Definição de Fluxo**: Criar um POP (Procedimento Operacional Padrão) visual sobre quem alimenta qual tela."
+        },
+        "ESF IV - Dr. Francisco Leoni Neto": {
+            "estresse": "BAIXO A MODERADO. A equipe odontológica tem fluxos de registro eficientes e sem dupla inserção, trabalhando apenas com sistemas oficiais. O estresse deriva puramente da falta de materiais de apoio claros para a área bucal.",
+            "diagnostico": "A dentista gasta em média 7 minutos preenchendo após o atendimento, o que é razoável considerando as especificidades do odontograma eletrônico. O fluxo só é interrompido por dúvidas no sistema (por manuais confusos), sem grandes impactos por lentidão de rede.",
+            "proposta": "1. **Tutorial e-SUS Odonto**: Desenvolvimento de tutoriais em vídeo/PDF curtos pelo PET-Saúde focados exclusivamente nas abas de odontologia. \n2. **Revisão de Horários**: Sugerir à gestão pequenos blocos de 5 minutos entre consultas para respiro digital dos dentistas."
+        },
+        "ESF V - Livramento": {
+            "estresse": "CRÍTICO. O gestor coordena uma unidade de extrema vulnerabilidade geográfica. O estresse atinge o ápice pela redundância tecnológica: uso simultâneo de dois sistemas (e-SUS e SIS da prefeitura). A equipe usa dispositivos pessoais por falhas de maquinário.",
+            "diagnostico": "Com 10 minutos gastos e o sistema travando diariamente, há colapso da agenda. O fato de os registros serem feitos em bloco no final do expediente significa que os dados não estão disponíveis para outros profissionais durante o dia, anulando a coordenação do cuidado.",
+            "proposta": "1. **Integração de Sistemas**: Advocacia pela interoperabilidade imediata via API entre o SIS Municipal e o e-SUS, sugerindo abandono do SIS se redundante. \n2. **Auditoria de TI**: Relatório formal do PET à Secretaria de Saúde detalhando a sucateação dos computadores e os riscos de uso contínuo de aparelhos pessoais."
         }
     }
     return analises.get(ubs_nome, {
@@ -293,7 +382,6 @@ def obter_analise_demonstracao_local(ubs_nome):
         "diagnostico": "Não especificado.",
         "proposta": "Não especificada."
     })
-
 
 with col_direita:
     st.subheader("Painel de Inteligência SUS-Digital (IA)")
