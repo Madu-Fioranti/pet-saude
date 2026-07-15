@@ -219,7 +219,7 @@ with col_esquerda:
     # Atualizar seleção caso o usuário clique no mapa (se disponível no retorno do st_folium)
     # Obs: Por robustez em ambiente de apresentação, o selectbox lateral serve de ancoragem e sincroniza o mapa
     
-    st.markdown("### 📊 Indicadores Rápidos da Unidade")
+    st.markdown("### Indicadores Rápidos da Unidade")
     
     # Seção de Métricas Dinâmicas com cores e alertas
     m_col1, m_col2, m_col3 = st.columns(3)
@@ -252,20 +252,20 @@ with col_esquerda:
         if dispositivos_pessoais:
             st.markdown("""
             <div class='metric-card-alert'>
-                <p style='margin:0; font-size: 0.8rem; color: #991B1B;'><b>⚠️ EQUIP. PESSOAL</b></p>
-                <p style='margin:0; font-size: 1.1rem; font-weight: bold; color: #991B1B;'>Uso de WhatsApp</p>
+                <p style='margin:0; font-size: 0.8rem; color: #991B1B;'><b>EQUIP. PESSOAL</b></p>
+                <p style='margin:0; font-size: 1.1rem; font-weight: bold; color: #991B1B;'>Uso de equipamento próprio</p>
             </div>
             """, unsafe_allow_html=True)
         else:
             st.markdown("""
             <div class='metric-card'>
-                <p style='margin:0; font-size: 0.8rem; color: #065F46;'><b>🔒 SEGURANÇA</b></p>
+                <p style='margin:0; font-size: 0.8rem; color: #065F46;'><b> SEGURANÇA</b></p>
                 <p style='margin:0; font-size: 1.1rem; font-weight: bold; color: #065F46;'>Dispos. Oficiais</p>
             </div>
             """, unsafe_allow_html=True)
 
     # Detalhes textuais das respostas reais fornecidas
-    with st.expander("🔍 Ver Respostas Brutas Coletadas no Formulário"):
+    with st.expander("Ver Respostas Brutas Coletadas no Formulário"):
         st.write(linha_filtrada.to_dict())
 
 
@@ -296,11 +296,11 @@ def obter_analise_demonstracao_local(ubs_nome):
 
 
 with col_direita:
-    st.subheader("🧠 Painel de Inteligência SUS-Digital (IA)")
+    st.subheader("Painel de Inteligência SUS-Digital (IA)")
     
     # Detecção do Modo (IA real vs. Demonstração)
     if api_key:
-        st.info("⚡ Conexão ativa com o Google Gemini. Processando em tempo real...")
+        st.info("Conexão ativa com o Google Gemini. Processando em tempo real...")
         
         try:
             # 3. CONEXÃO COM O GEMINI 1.5 FLASH
@@ -354,20 +354,20 @@ Seu relatório DEVE conter exatamente estas três seções estruturadas:
             
     # 4. MODO DE DEMONSTRAÇÃO (SAFETY FALLBACK)
     if not api_key:
-        st.warning("⚠️ Modo de Demonstração Ativado (Análise Local Inteligente)")
+        st.warning("Modo de Demonstração Ativado (Análise Local Inteligente)")
         
         analise_local = obter_analise_demonstracao_local(ubs_selecionada)
         
         st.markdown(f"### Análise de Diagnóstico: *{ubs_selecionada}*")
         
-        st.markdown("#### 📊 1. Nível de Estresse Digital da Equipe")
+        st.markdown("#### Nível de Estresse Digital da Equipe")
         st.markdown(analise_local["estresse"])
         
-        st.markdown("#### ⏳ 2. Diagnóstico de Tempo e Impacto na Agenda")
+        st.markdown("#### Diagnóstico de Tempo e Impacto na Agenda")
         st.markdown(analise_local["diagnostico"])
         
-        st.markdown("#### 💡 3. Proposta de Ação de Baixo Custo (PET-Saúde Digital)")
+        st.markdown("#### Proposta de Ação de Baixo Custo (PET-Saúde Digital)")
         st.markdown(analise_local["proposta"])
 
 st.markdown("---")
-st.markdown("<p style='text-align: center; font-size: 0.8rem; color: #9CA3AF;'>Projeto PET-Saúde Digital Bariri / UNESP — Apresentação de Resultados 2026. Desenvolvido com Streamlit e IA Generativa.</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 0.8rem; color: #9CA3AF;'>Projeto PET-Saúde Digital Bariri / UNESP — Apresentação de Resultados 2026. Desenvolvido com Streamlit e GenAI.</p>", unsafe_allow_html=True)
