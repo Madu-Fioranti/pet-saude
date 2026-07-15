@@ -1,5 +1,12 @@
 import streamlit as st
+st.set_page_config(
+    page_title="Área do Aluno - Mapeia PET",
+    page_icon="Captura de tela 2026-07-15 081603.png", # Ícone da aba
+    layout="wide"
+)
 
+# Adiciona a logo acima do menu lateral
+st.logo("Captura de tela 2026-07-15 081603.png")
 st.set_page_config(page_title="Login - Mapeia PET")
 
 st.title("Login do Sistema")
