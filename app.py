@@ -81,7 +81,7 @@ st.markdown("""
 # Configuração da página do Streamlit
 st.set_page_config(
     page_title="SUS-Digital Maps Bariri",
-    page_icon="🏥",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -315,7 +315,7 @@ ubs_selecionada = st.sidebar.selectbox(
 
 st.sidebar.markdown("---")
 st.sidebar.markdown("""
-### ℹ️ Sobre o PET-Saúde Digital
+### Sobre o PET-Saúde Digital UNESP / USP
 Este projeto analisa os fatores humanos, infraestrutura e conectividade que influenciam a digitalização do SUS no município de Bariri - SP, visando propor melhorias de processos, redução de redundâncias e capacitação das equipes de saúde da família.
 """)
 
