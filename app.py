@@ -537,4 +537,4 @@ Seu relatório DEVE conter exatamente estas três seções estruturadas:
         st.markdown(analise_local["proposta"])
 
 st.markdown("---")
-st.markdown("<p style='text-align: center; font-size: 0.8rem; color: #9CA3AF;'>Projeto PET-Saúde Digital Bariri / UNESP — Apresentação de Resultados 2026. Desenvolvido com Streamlit e GenAI.</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 0.8rem; color: #9CA3AF;'>Projeto PET-Saúde Digital Bariri / UNESP & USP — Apresentação de Resultados 2026. Desenvolvido com Streamlit e GenAI.</p>", unsafe_allow_html=True)
