@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-SUS-Digital Maps Bariri - PET-Saúde Digital
+Mapeia PET - Saúde Digital
 Aplicativo para análise inteligente do fluxo e estresse digital nas UBSs de Bariri - SP.
 """
 
@@ -11,6 +11,73 @@ from streamlit_folium import st_folium
 import google.generativeai as genai
 import json
 
+# ==========================================================
+# 1. CONFIGURAÇÃO DA PÁGINA E LOGO (INSERIDOS AQUI)
+# ==========================================================
+st.set_page_config(
+    page_title="Mapeia PET",
+    #page_icon="image_305084.png",  # Logo na aba do navegador
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Adiciona a logo no canto superior esquerdo (acima da barra lateral)
+st.logo("image_305084.png")
+
+
+# ==========================================================
+# 2. ESTILIZAÇÃO CSS (AGORA COM A FONTE MONTSERRAT)
+# ==========================================================
+st.markdown("""
+<style>
+    /* Importa a fonte para combinar com a logo */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+    /* Força o Streamlit a usar a nova fonte */
+    html, body, [class*="css"], [class*="st-"] {
+        font-family: 'Montserrat', sans-serif !important;
+    }
+
+    .main-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #002B49; /* Ajustado para o azul escuro da logo */
+        margin-bottom: 0.5rem;
+    }
+    .subtitle {
+        font-size: 1.1rem;
+        color: #00B259; /* Ajustado para o verde da logo */
+        margin-bottom: 2rem;
+        font-weight: 600;
+    }
+    .metric-card {
+        background-color: #F3F4F6;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        border-left: 5px solid #00B259;
+        margin-bottom: 1rem;
+    }
+    .metric-card-alert {
+        background-color: #FEF2F2;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        border-left: 5px solid #EF4444;
+        margin-bottom: 1rem;
+    }
+    .sidebar-title {
+        font-weight: bold;
+        color: #002B49;
+    }
+    .stAlert {
+        border-radius: 0.5rem;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+
+# ==========================================================
+# O RESTANTE DO SEU CÓDIGO CONTINUA INTACTO A PARTIR DAQUI
+# ==========================================================
 # Configuração da página do Streamlit
 st.set_page_config(
     page_title="SUS-Digital Maps Bariri",
