@@ -16,13 +16,13 @@ import json
 # ==========================================================
 st.set_page_config(
     page_title="Mapeia PET",
-    #page_icon="image_305084.png",  # Logo na aba do navegador
+    page_icon="Captura de tela 2026-07-15 081603.png",  # Logo na aba do navegador
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
 # Adiciona a logo no canto superior esquerdo (acima da barra lateral)
-st.logo("image_305084.png")
+st.logo("Captura de tela 2026-07-15 081603.png")
 
 
 # ==========================================================
