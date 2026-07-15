@@ -296,11 +296,11 @@ coordenadas_ubs = {
 }
 
 # Cabeçalho da Página Principal
-st.markdown("<h1 class='main-title'>🏥 SUS-Digital Maps Bariri</h1>", unsafe_allow_html=True)
+st.markdown("<h1 class='main-title'>SUS-Digital Maps Bariri</h1>", unsafe_allow_html=True)
 st.markdown("<p class='subtitle'>Projeto PET-Saúde Digital — Análise e Diagnóstico de Estresse Digital e Infraestrutura Tecnológica de Saúde em Bariri - SP</p>", unsafe_allow_html=True)
 
 # BARRA LATERAL (Sidebar)
-st.sidebar.markdown("<h2 class='sidebar-title'>⚙️ Configurações & Filtros</h2>", unsafe_allow_html=True)
+st.sidebar.markdown("<h2 class='sidebar-title'>Configurações & Filtros</h2>", unsafe_allow_html=True)
 
 # Configuração da API Key do Gemini
 api_key = st.sidebar.text_input("Chave de API do Gemini (Opcional)", type="password", help="Insira sua API Key do Google Gemini para habilitar análises generativas em tempo real.")
@@ -333,7 +333,7 @@ percepcao_cuidado = linha_filtrada["Em uma escala de 1 a 5, quanto você conside
 col_esquerda, col_direita = st.columns([1.1, 1.0])
 
 with col_esquerda:
-    st.subheader("📍 Georreferenciamento de Bariri e UBSs")
+    st.subheader("Georreferenciamento de Bariri e UBSs")
     
     # Criar mapa Folium centralizado em Bariri, SP
     mapa = folium.Map(location=[-22.0744, -48.7403], zoom_start=14, tiles="OpenStreetMap")
